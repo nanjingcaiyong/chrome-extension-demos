@@ -1,0 +1,17 @@
+{
+  "name": "Action API Demo",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Default title",
+    "default_popup": "popups/popup.html",
+    "default_icon": {
+      "16": "icons/32.png",
+      "24": "icons/72.png",
+      "32": "icons/128.png"
+    }
+  }
+}

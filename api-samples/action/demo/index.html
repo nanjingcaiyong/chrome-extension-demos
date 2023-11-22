@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script defer src="index.js"></script>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Action API 演示</h1>
+      <p>尝试更改下面API之前，建议先将扩展固定在工具栏</p>
+      <img src="" alt="" class="src">
+    </section>
+
+    <section>
+      <h2>启用 / 禁用扩展</h2>
+
+      <p>单击下面的切换启用状态按钮将启用或禁用 Chrome 工具栏和扩展菜单中的扩展操作按钮。</p>
+
+      <p>
+        禁用后，单击该操作将不会打开弹出窗口或触发 
+        <a  href="https://developer.chrome.com/docs/extensions/reference/action/#event-onClicked"><code>action.onClicked</code></a>
+        事件。
+      </p>
+      <button id="toggle-state-button">关闭扩展</button>
+    </section>
+
+
+    <section>
+      <h2>Popup</h2>
+      <p>演示 <a href="manifest.json">manifest.json</a> 文件中 <code>action.default_popup</code> 设置为 <code>popups/popup.html</code>。我们能在运行时通过使用 <a
+        href="https://developer.chrome.com/docs/extensions/reference/action/#method-setPopup"><code>action.setPopup</code></a> 来修改。
+      </p>
+
+      <label>
+        修改 popup 页面<br />
+        <select id="popup-options">
+          <option value="/popups/popup.html">Hello world (default)</option>
+          <option value="/popups/a.html">A</option>
+          <option value="/popups/b.html">B</option>
+          <option value="">点击事件</option>
+        </select>
+      </label>
+    </section>
+
+
+    <section>
+      <h2>徽标文案</h2>
+      <p>该操作的徽章文本是带有纯色背景色的文本叠加层。这提供了一个被动的 UI 界面来与用户共享信息。它最常用于显示通知计数或当前页面上执行的操作数。</p>
+
+      <div class="spaced">
+        <label>
+          输入徽标文案 (实时更新)<br />
+          <input type="text" id="badge-text-input" />
+        </label>
+      </div>
+
+      <div class="flex">
+        <label class="full-width">
+          当前徽标文案
+          <input type="text" id="current-badge-text" disabled />
+        </label>
+        <button id="clear-badge-button">清除徽标文案</button>
+      </div>
+
+      <div class="spaced">
+        <button id="set-badge-background-color-button">
+          随机设置徽标背景颜色
+        </button>
+      </div>
+
+
+      <div class="flex">
+        <label class="full-width">
+          当前徽标背景颜色
+          <input type="text" id="current-badge-bg-color" disabled />
+        </label>
+        <button id="reset-badge-background-color-button">
+          重置徽标颜色
+        </button>
+      </div>
+    </section>
+
+
+    <section>
+      <h2>徽标字体颜色</h2>
+      <p>方法 <a
+        href="https://developer.chrome.com/docs/extensions/reference/action/#method-setBadgeTextColor"
+        ><code>action.setBadgeTextColor</code></a> 允许更改徽标字体颜色
+      </p>
+
+      <div class="spaced">
+        <button id="set-badge-txt-color-button">
+          随机徽标字体颜色
+        </button>
+      </div>
+
+      <p>
+        方法
+        <a
+          href="https://developer.chrome.com/docs/extensions/reference/action/#method-getBadgeTextColor"
+          ><code>action.getBadgeTextColor</code></a
+        >
+        允许读取当前徽标字体颜色
+      </p>
+
+      <div class="flex">
+        <label class="full-width">
+          当前徽标字体颜色
+          <input type="text" id="current-badge-txt-color" disabled />
+        </label>
+        <button id="reset-badge-txt-color-button">
+          重置徽标字体颜色
+        </button>
+      </div>
+    </section>
+
+
+    <section id="setIcon">
+      <h2>图标</h2>
+
+      <p>
+        方法
+        <a
+          href="https://developer.chrome.com/docs/extensions/reference/action/#method-setIcon"
+          ><code>action.setIcon</code></a
+        >
+        允许通过设置图片或原始图片路径的方式改变操作按钮图标
+
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData"
+          >ImageData</a
+        >.
+      </p>
+
+      <button id="set-icon-button">设置新的操作按钮图标</button>
+      <button id="reset-icon-button">重置操作按钮图标</button>
+    </section>
+
+
+    <section id="title">
+      <h2>悬停文案</h2>
+
+      <p>
+        当鼠标悬停在扩展程序的操作按钮上时展示的标题。
+      </p>
+
+      <p>
+        在运行时可以使用
+        <a
+          href="https://developer.chrome.com/docs/extensions/reference/action/#method-getTitle"
+          ><code>action.getTitle</code></a
+        >
+        和
+        <a
+          href="https://developer.chrome.com/docs/extensions/reference/action/#method-setTitle"
+          ><code>action.setTitle</code></a
+        >
+        方法来设置和读取扩展悬停的标题
+      </p>
+
+      <div class="spaced">
+        <label>
+          输入新标题 (防抖)<br />
+          <input type="text" id="title-input" />
+        </label>
+      </div>
+
+      <div class="flex">
+        <label class="full-width">
+          当前标题
+          <input type="text" id="current-title" disabled />
+        </label>
+        <button id="reset-title-button">重置标题</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
